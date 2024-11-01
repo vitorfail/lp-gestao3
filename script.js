@@ -211,3 +211,56 @@ comentario.addEventListener('mousemove', doDragging);
 comentario.addEventListener('touchstart', startDragging);
 comentario.addEventListener('touchend', stopDragging);
 comentario.addEventListener('touchmove', doDragging);
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Criar geometria de partículas
+const particlesCount = 10000;
+const particlesGeometry = new THREE.BufferGeometry();
+const positions = new Float32Array(particlesCount * 3);
+
+for (let i = 0; i < particlesCount; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const theta = Math.random() * Math.PI;
+    const radius = Math.random() * 5; // Raio da esfera
+
+    positions[i * 3] = radius * Math.sin(theta) * Math.cos(angle);
+    positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(angle);
+    positions[i * 3 + 2] = radius * Math.cos(theta);
+}
+
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+// Criar material das partículas
+const particlesMaterial = new THREE.PointsMaterial({
+    color: 0xff0000,
+    size: 0.02,
+});
+
+// Criar a esfera de partículas
+const particles = new THREE.Points(particlesGeometry, particlesMaterial);
+scene.add(particles);
+
+// Configura a câmera
+camera.position.z = 10;
+
+// Função de animação
+function animate() {
+    requestAnimationFrame(animate);
+    particles.rotation.x += 0.001; // Rotação para visualização
+    particles.rotation.y += 0.001;
+    renderer.render(scene, camera);
+}
+
+// Iniciar animação
+animate();
+
+// Ajustar tamanho da tela ao redimensionar a janela
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
