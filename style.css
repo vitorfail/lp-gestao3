@@ -89,9 +89,6 @@ section{
 .cta_inicial h1{
     padding: 20px 0px;
     width: 80%;
-    line-height: 1.1;
-    font-size: 44px;
-    font-weight: 600;
 }
 .cta_inicial p{
     padding: 20px 0px;
@@ -142,9 +139,7 @@ section{
         background-position: 0%;
     }
 }
-.titulo2{
-    font-size: 40px;
-}
+
 .cta_inicial .registrar{
     background: var(--cor-thema);
     color: rgb(255, 255, 255);
@@ -452,6 +447,16 @@ font-size: 19px;
     transform: translateY(-110px);
 }
 .container{
+}
+.vantagens{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+h1{
+    font-size: 30px;
+    font-weight: 600
 }
 .cima{
     opacity: 0;
