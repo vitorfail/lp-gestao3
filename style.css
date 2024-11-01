@@ -87,12 +87,14 @@ section{
     justify-content: space-between;
 }
 .cta_inicial h1{
+    font-size: 40px;
+    line-height: 1.1;
     padding: 20px 0px;
-    width: 80%;
+    width: 80%
 }
 .cta_inicial p{
     padding: 20px 0px;
-    transform: translateX(10px);
+    padding-left: 10px;
     position: relative;
     display: flex;
     line-height: 1.2;
@@ -193,12 +195,10 @@ section{
     justify-content: center;
 }
 .contadores .cont{
-    margin: 3%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 20%;
 }
 .contadores .cont span::before{
     color: var(--cor-thema);
@@ -242,6 +242,9 @@ section{
     display: flex;
     width: 100%;
     height: 100%;
+}
+.prova h1{
+    text-align: center;
 }
 .prova .controles{
     justify-content: center;
@@ -436,7 +439,7 @@ font-size: 19px;
 .item{
     margin-top: 20px;
     padding: 30px;
-    width: 83%;
+    width: 100%;
     aspect-ratio: 1/0.7;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -446,7 +449,11 @@ font-size: 19px;
     font-size: 60px;
 }
 .coluna:nth-of-type(1){
+    padding-right: 10px;
     transform: translateY(-110px);
+}
+.coluna:nth-of-type(2){
+    padding-left: 10px;
 }
 .container{
 }
@@ -462,7 +469,7 @@ font-size: 19px;
     flex-direction: column;
 }
 .vantagens h1, .vantagens .linha, .vantagens .texto{
-    margin: 20px 0px;
+    margin: 10px 0px;
 }
 .vantagens .texto{
     width: 70%;
@@ -519,6 +526,47 @@ font-size: 19px;
     font-weight: 200;
     width: 70%;
     line-height: 1.1;
+}
+.planilhas{
+    height: auto;
+    width: 100%;
+}
+.planilhas .lado1, .planilhas .lado2{
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    padding: 20px 0px;
+}
+.planilhas img{
+    height: 20vh;
+    width: 35%;
+    border-radius: 20px;
+    border:2px solid var(--cor-thema);
+    box-shadow: 1px 1px 28px rgba(236, 226, 74, 0.432);
+}
+.planilhas .info{
+    padding:0px 20px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.planilhas .info p:nth-child(1){
+    font-size: 20px;
+    font-weight: 700;
+}
+.planilhas .info p:nth-child(2){
+    font-weight: 200;
+    line-height: 1.2;
+}
+.planilhas .lado2 .info{
+    align-items: flex-end;
+}
+.planilhas .lado1 .info{
+    align-items: flex-start;
+}
+.planilhas .lado2 .info p{
+    text-align: end;
 }
 h1{
     font-size: 30px;
@@ -863,13 +911,10 @@ h1{
 }
 @media screen and (min-width: 1650px){
     .center{
-        width: 50%;
+        width: 40%;
     }
     .center_provas{
-        width: 50%;
-    }
-    .center_provas{
-        width: 50%;
+        width: 40%;
     }
     .prova .titulo2+p{
         text-align: center;
