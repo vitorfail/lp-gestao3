@@ -211,32 +211,43 @@ comentario.addEventListener('mousemove', doDragging);
 comentario.addEventListener('touchstart', startDragging);
 comentario.addEventListener('touchend', stopDragging);
 comentario.addEventListener('touchmove', doDragging);
+
+// Configuração básica da cena
+// Configuração básica da cena
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+
+// Obtendo a div onde a cena será renderizada
+const container = document.getElementById('esfera');
+renderer.setSize(container.clientWidth, container.clientHeight);
+container.appendChild(renderer.domElement);
 
 // Criar geometria de partículas
-const particlesCount = 10000;
+const particlesCount = 1000;
 const particlesGeometry = new THREE.BufferGeometry();
 const positions = new Float32Array(particlesCount * 3);
 
-for (let i = 0; i < particlesCount; i++) {
-    const angle = Math.random() * Math.PI * 2;
-    const theta = Math.random() * Math.PI;
-    const radius = Math.random() * 5; // Raio da esfera
+// Usar um raio fixo para manter a esfera
+const radius = 5; // Raio fixo
 
-    positions[i * 3] = radius * Math.sin(theta) * Math.cos(angle);
-    positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(angle);
-    positions[i * 3 + 2] = radius * Math.cos(theta);
+function updateParticlePositions() {
+    for (let i = 0; i < particlesCount; i++) {
+        const angle = Math.random() * Math.PI * 2; // ângulo em torno do eixo Y
+        const theta = Math.acos(Math.random() * 2 - 1); // ângulo polar
+
+        positions[i * 3] = radius * Math.sin(theta) * Math.cos(angle); // X
+        positions[i * 3 + 1] = radius * Math.sin(theta) * Math.sin(angle); // Y
+        positions[i * 3 + 2] = radius * Math.cos(theta); // Z
+    }
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 }
 
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+updateParticlePositions();
 
 // Criar material das partículas
 const particlesMaterial = new THREE.PointsMaterial({
-    color: 0xff0000,
+    color: 0xffa500,
     size: 0.02,
 });
 
@@ -244,14 +255,14 @@ const particlesMaterial = new THREE.PointsMaterial({
 const particles = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(particles);
 
-// Configura a câmera
-camera.position.z = 10;
+// Configurar a posição da câmera
+camera.position.z = radius * 2.0; // Distância da câmera em relação à esfera
 
 // Função de animação
 function animate() {
     requestAnimationFrame(animate);
-    particles.rotation.x += 0.001; // Rotação para visualização
-    particles.rotation.y += 0.001;
+    particles.rotation.x += 0.01; // Rotação para visualização
+    particles.rotation.y += 0.01;
     renderer.render(scene, camera);
 }
 
@@ -260,7 +271,12 @@ animate();
 
 // Ajustar tamanho da tela ao redimensionar a janela
 window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(width, height);
+
+    // Recalcular a posição das partículas para manter a forma esférica
+    updateParticlePositions();
 });
