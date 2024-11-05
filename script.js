@@ -211,6 +211,18 @@ comentario.addEventListener('mousemove', doDragging);
 comentario.addEventListener('touchstart', startDragging);
 comentario.addEventListener('touchend', stopDragging);
 comentario.addEventListener('touchmove', doDragging);
+const planilhasEl = document.querySelector(".planilhas");
+const ladoEls = document.querySelectorAll(".lado");
+
+planilhasEl.addEventListener("pointermove", (ev) => {
+  ladoEls.forEach((ladoEl) => {
+    const rect = ladoEl.getBoundingClientRect();
+    
+    // Calculando a posição do mouse dentro do elemento
+    ladoEl.style.setProperty("--x", (ev.clientX - rect.left) / rect.width * 100 + "%");
+    ladoEl.style.setProperty("--y", (ev.clientY - rect.top) / rect.height * 100 + "%");
+  });
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const scene = new THREE.Scene();
@@ -268,21 +280,5 @@ document.addEventListener('DOMContentLoaded', () => {
         renderer.setSize(width, height);
     });
 });
-const brilho = document.querySelector('.brilho');
-const elementos = document.querySelectorAll('.lado');
-
-elementos.forEach((elemento) => {
-    elemento.addEventListener('mousemove', (e) => {
-        brilho.style.display = "flex"; // Esconde o brilho ao sair do elemento
-      brilho.style.left = `${e.pageX}px`;
-      brilho.style.top = `${e.pageY}px`;
-      brilho.style.opacity = 1; // Mostra o brilho ao mover o mouse
-    });
-    
-    elemento.addEventListener('mouseleave', () => {
-    console.log("passou aqui")
-      brilho.style.display = "none"; // Esconde o brilho ao sair do elemento
-    });
-  });
 
 
