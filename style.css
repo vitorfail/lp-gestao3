@@ -92,7 +92,7 @@ section{
     justify-content: space-between;
 }
 .cta_inicial h1{
-    font-size: 40px;
+    font-size: 42px;
     line-height: 1.1;
     padding: 20px 0px;
     width: 80%
@@ -288,7 +288,7 @@ section{
     padding: 50px 0px
 }
 .problemas{
-    padding-top: 100px;
+    padding: 50px 0px;
 }
 .problemas .center{
     display: flex; 
@@ -335,8 +335,8 @@ section{
     color: white;
 }
 .linha{
-    margin-top: 10px;
-    width: 60%;
+    margin: 20px 0px;
+    width: 40%;
     height: 5px;
     border-radius: 3px;
     background: var(--cor-thema);
@@ -346,7 +346,6 @@ section{
     line-height: 1.1;
     font-weight: 200;
     width: 55%;
-    padding-top: 10px;
 }
 .container_comentarios{
     width: 100%;
@@ -599,19 +598,19 @@ font-size: 19px;
     width: 70%;
     line-height: 1.1;
 }
-.planilhas{
-    height: auto;
-    width: 100%;
-}*:before,
+*:before,
 *:after {
   box-sizing: border-box;
   position: relative;
 }
 
 .planilhas {
+    height: auto;
+    width: 100%;
   display: flex;
+  padding: 50px 0px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   flex-direction: column;
 }
 
@@ -745,6 +744,12 @@ video{
     align-items: center;
     justify-content: center;
 }
+.produtos .title{
+    text-align: center;
+    line-height: 1.1;
+    font-weight: 300;
+    width: 70%;
+}
 .produtos .precos{
     flex-shrink: 1;
     min-height: auto;
@@ -851,7 +856,7 @@ video{
     background: linear-gradient( to right ,rgb(2, 79, 180), rgb(2, 47, 170));
 }
 h1{
-    font-size: 30px;
+    font-size: 42px;
     font-weight: 600
 }
 .cima{
