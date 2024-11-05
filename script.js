@@ -2,6 +2,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (window.location.hash) {
         history.replaceState(null, null, ' ');
     }
+    contadores()
 });
 
 const direcoes = ["esquerda", "direita", "cima", "baixo", "solucao-letra", "listra", "money", "pergunta", "cifrao", "numero1", "numero2", "numero3"];
